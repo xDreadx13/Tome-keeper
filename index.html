@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tomekeeper | Ultimate Master Edition v2</title>
+    <title>Tomekeeper | Master Edition v2</title>
+    <link rel="manifest" href="/Tome-keeper/manifest.json">
     <style>
         :root {
             --bg-color: #0b0b0b;
@@ -52,6 +53,7 @@
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
+            flex-direction: row;
             transition: background 0.3s, color 0.3s;
         }
 
@@ -63,6 +65,7 @@
             display: flex;
             flex-direction: column;
             gap: 2rem;
+            flex-shrink: 0;
         }
 
         .logo-area h1 {
@@ -128,6 +131,7 @@
             padding: 2.5rem;
             overflow-y: auto;
             max-height: 100vh;
+            width: 100%;
         }
 
         .section-header {
@@ -135,6 +139,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .section-header h2 {
@@ -247,7 +253,6 @@
 
         /* Reading Goal Progress Bar */
         .goal-progress-box {
-            grid-column: span 2;
             background-color: var(--surface-color);
             border: 1px solid var(--border-color);
             padding: 1rem 1.5rem;
@@ -304,6 +309,7 @@
             display: flex;
             gap: 1.5rem;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .book-mock-cover {
@@ -354,25 +360,6 @@
             height: 100%;
             width: 15%;
         }
-
-        .tags-row {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-top: 0.6rem;
-        }
-
-        .tag {
-            background-color: var(--surface-hover);
-            border: 1px solid var(--border-color);
-            color: var(--gold-light);
-            font-size: 0.75rem;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-        }
-
-        .tag.trope { border-color: var(--accent-pink); color: var(--accent-pink); }
-        .tag.damage { border-color: var(--accent-red); color: var(--accent-red); }
 
         /* Format Syncer Styles */
         .format-tabs {
@@ -546,7 +533,7 @@
 
         .pin-canvas {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 1.2rem;
             min-height: 250px;
         }
@@ -607,6 +594,37 @@
             display: flex;
             gap: 0.5rem;
             align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* --- MOBILE RESPONSIVE MEDIA QUERY --- */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+            sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 1.2rem 1rem;
+                gap: 1rem;
+            }
+            .countdown-box {
+                display: none;
+            }
+            main {
+                padding: 1rem;
+                max-height: none;
+            }
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            .shelves-container, .pin-board-section {
+                grid-column: span 1;
+            }
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
         }
     </style>
 </head>
@@ -635,18 +653,18 @@
             <h2 class="shield-notice">Welcome back, Sky</h2>
             <div class="header-controls">
                 <div class="api-search-bar">
-                    <input type="text" id="apiSearchInput" class="api-search-input" placeholder="Search any book title...">
-                    <button class="btn-gold" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="fetchLiveBookMetadata()">Fetch API</button>
+                    <input type="text" id="apiSearchInput" class="api-search-input" placeholder="Search book...">
+                    <button class="btn-gold" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="fetchLiveBookMetadata()">Fetch</button>
                 </div>
                 <label class="theme-toggle-label">
-                    <input type="checkbox" id="themeToggle" onclick="toggleTheme(this)"> Light Theme
+                    <input type="checkbox" id="themeToggle" onclick="toggleTheme(this)"> Light
                 </label>
                 <label class="shield-toggle-label">
-                    <input type="checkbox" id="shieldToggle" onclick="toggleSpoilerShield(this)"> Spoiler Shield
+                    <input type="checkbox" id="shieldToggle" onclick="toggleSpoilerShield(this)"> Shield
                 </label>
                 <div class="selector-box">
                     <select id="bookSelect" onchange="switchBookProfile(this.value)">
-                        <option value="onyx">Onyx Storm (Current)</option>
+                        <option value="onyx">Onyx Storm</option>
                         <option value="iron">Iron Flame</option>
                         <option value="fourth">Fourth Wing</option>
                     </select>
@@ -658,7 +676,7 @@
         <div class="goal-progress-box spoiler-target">
             <div class="goal-header">
                 <span>Annual Reading Goal (Target: 5 Books)</span>
-                <span id="goalText">2.2 / 5 Books Completed (44%)</span>
+                <span id="goalText">2.2 / 5 Books (44%)</span>
             </div>
             <div class="goal-bar-bg">
                 <div class="goal-bar-fill" id="goalBarFill"></div>
@@ -668,18 +686,18 @@
         <!-- Reading Time Machine & JSON Backup Bar -->
         <div class="time-machine-box spoiler-target">
             <div>
-                <strong style="color: var(--gold-light); font-size: 0.9rem;">Reading Time Machine & Data Backup</strong>
-                <p style="font-size: 0.8rem; color: var(--text-muted);">Log sessions or export/import your custom pins & notes securely.</p>
+                <strong style="color: var(--gold-light); font-size: 0.9rem;">Reading Time Machine & Backup</strong>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Log sessions or export/import data.</p>
             </div>
             <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
                 <div style="display: flex; gap: 0.5rem; align-items: center;">
-                    <input type="number" id="sessionMinutes" class="time-machine-input" placeholder="Minutes read" style="width: 100px;" min="1" value="45">
-                    <button class="btn-gold" onclick="logReadingSession()">Log Session</button>
+                    <input type="number" id="sessionMinutes" class="time-machine-input" placeholder="Mins" style="width: 80px;" min="1" value="45">
+                    <button class="btn-gold" onclick="logReadingSession()">Log</button>
                 </div>
                 <div class="backup-toolbar">
-                    <button class="btn-gold" style="font-size: 0.8rem; background: var(--surface-hover); color: var(--gold-light); border: 1px solid var(--gold-dark);" onclick="exportUserData()">Export JSON</button>
+                    <button class="btn-gold" style="font-size: 0.8rem; background: var(--surface-hover); color: var(--gold-light); border: 1px solid var(--gold-dark);" onclick="exportUserData()">Export</button>
                     <label class="btn-gold" style="font-size: 0.8rem; cursor: pointer; background: var(--surface-hover); color: var(--gold-light); border: 1px solid var(--gold-dark); padding: 0.5rem 1rem; border-radius: 6px; display: inline-block;">
-                        Import JSON <input type="file" id="importFile" style="display: none;" onchange="importUserData(event)">
+                        Import <input type="file" id="importFile" style="display: none;" onchange="importUserData(event)">
                     </label>
                 </div>
             </div>
@@ -692,15 +710,15 @@
             </div>
             <div class="stat-card">
                 <h3>Reading Velocity</h3>
-                <div class="value" id="velocityStat">13 Days / Book</div>
+                <div class="value" id="velocityStat" style="font-size: 1.4rem;">13 Days / Book</div>
             </div>
             <div class="stat-card">
                 <h3>Top Trope Tag</h3>
-                <div class="value" style="font-size: 1.2rem; padding-top: 0.3rem;" id="statTrope">Enemies-to-Lovers</div>
+                <div class="value" style="font-size: 1.1rem; padding-top: 0.3rem;" id="statTrope">Enemies-to-Lovers</div>
             </div>
             <div class="stat-card">
-                <h3>Emotional Damage Index</h3>
-                <div class="value" style="color: var(--accent-red);" id="statDamage">9.8 / 10</div>
+                <h3>Emotional Damage</h3>
+                <div class="value" style="color: var(--accent-red); font-size: 1.4rem;" id="statDamage">9.8 / 10</div>
             </div>
         </div>
 
@@ -708,37 +726,37 @@
             
             <!-- Currently Reading Card with Dual Format Syncer -->
             <div class="card-container spoiler-target" style="margin-bottom: 0;">
-                <h3>Currently Reading & Format Syncer</h3>
+                <h3>Currently Reading & Format</h3>
                 
                 <div class="format-tabs">
-                    <button class="btn-format active" onclick="switchFormat('physical')" id="btnPhysical">📖 Physical Book</button>
-                    <button class="btn-format" onclick="switchFormat('audio')" id="btnAudio">🎧 Audiobook</button>
+                    <button class="btn-format active" onclick="switchFormat('physical')" id="btnPhysical">📖 Physical</button>
+                    <button class="btn-format" onclick="switchFormat('audio')" id="btnAudio">🎧 Audio</button>
                 </div>
 
                 <div class="current-read-flex" style="margin-bottom: 1rem;">
                     <div class="book-mock-cover" id="currCover">
                         <strong>Onyx Storm</strong>
                     </div>
-                    <div class="book-info" style="flex: 1;">
+                    <div class="book-info" style="flex: 1; min-width: 140px;">
                         <h4 id="currTitle">Onyx Storm</h4>
                         <p id="currAuthor" style="color: var(--gold-light);">by Rebecca Yarros</p>
-                        <p id="currSeries">Series: The Empyrean (Book 3 of 5)</p>
+                        <p id="currSeries">Series: The Empyrean (Book 3)</p>
                         <p id="formatStats">Pages: ~623 | Chapters: 65</p>
                         <div class="progress-bar-bg" style="margin-top: 0.5rem;">
                             <div class="progress-bar-fill" id="progressBar" style="width: 15%;"></div>
                         </div>
                     </div>
                 </div>
-                <div style="background: var(--surface-hover); padding: 0.75rem; border-radius: 6px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between;">
-                    <span style="font-size: 0.85rem; color: var(--text-muted);" id="bookmarkLabel">Current Page / Chapter:</span>
-                    <input type="text" id="bookmarkInput" class="bookmark-input" placeholder="e.g. Chapter 4" style="width: 110px;" oninput="saveBookmark()">
+                <div style="background: var(--surface-hover); padding: 0.75rem; border-radius: 6px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                    <span style="font-size: 0.85rem; color: var(--text-muted);" id="bookmarkLabel">Spot:</span>
+                    <input type="text" id="bookmarkInput" class="bookmark-input" placeholder="e.g. Chapter 4" style="width: 120px;" oninput="saveBookmark()">
                 </div>
             </div>
 
             <!-- Codex Lore Glossary Tracker -->
             <div class="card-container spoiler-target" style="margin-bottom: 0;">
                 <h3>Codex Lore Glossary</h3>
-                <input type="text" id="codexSearch" class="codex-search" placeholder="Search terms, dragons, rules..." oninput="filterCodex(this.value)">
+                <input type="text" id="codexSearch" class="codex-search" placeholder="Search terms, dragons..." oninput="filterCodex(this.value)">
                 <div class="codex-list" id="codexList">
                     <div class="codex-item">
                         <h5>Basgiath War College</h5>
@@ -757,7 +775,7 @@
 
             <!-- Custom Shelves Section -->
             <div class="shelves-container spoiler-target">
-                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
                     <h3 style="color: var(--gold-primary); font-size: 1.2rem; margin: 0;">Custom Bookshelves</h3>
                     <button class="btn-gold" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;" onclick="createNewShelf()">+ Add Shelf</button>
                 </div>
@@ -780,10 +798,10 @@
             <!-- Pin Board Section -->
             <div class="pin-board-section">
                 <div class="pin-board-header">
-                    <h3 id="pinBoardTitle">Infinite Pin Board: Onyx Storm Focus</h3>
-                    <div style="display: flex; gap: 0.5rem;">
+                    <h3 id="pinBoardTitle">Infinite Pin Board</h3>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                         <button class="btn-gold" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; background: var(--surface-hover); color: var(--gold-light); border: 1px solid var(--gold-dark);" onclick="exportQuotesText()">📋 Export Quotes</button>
-                        <button class="btn-gold" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;" onclick="toggleCustomPinForm()">+ Add Custom Pin</button>
+                        <button class="btn-gold" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;" onclick="toggleCustomPinForm()">+ Add Pin</button>
                     </div>
                 </div>
 
@@ -804,7 +822,7 @@
                     <button class="btn-react" onclick="addReactionPin('😱 Gasp / Plot Twist')">😱 Gasp</button>
                     <button class="btn-react" onclick="addReactionPin('😭 Emotional Damage')">😭 Crying</button>
                     <button class="btn-react" onclick="addReactionPin('🤬 Absolute Rage')">🤬 Rage</button>
-                    <button class="btn-react" onclick="addReactionPin('✨ Major Swoon')">✨ Swooning</button>
+                    <button class="btn-react" onclick="addReactionPin('✨ Major Swoon')">✨ Swoon</button>
                 </div>
                 
                 <div class="pin-canvas" id="pinCanvas">
@@ -902,11 +920,11 @@
 
             if(format === 'physical') {
                 document.getElementById('formatStats').innerText = p.curr.statsPhysical;
-                document.getElementById('bookmarkLabel').innerText = "Current Page / Chapter:";
+                document.getElementById('bookmarkLabel').innerText = "Spot:";
                 loadBookmark(bookKey + '_physical');
             } else {
                 document.getElementById('formatStats').innerText = p.curr.statsAudio;
-                document.getElementById('bookmarkLabel').innerText = "Audio Timestamp / Chapter:";
+                document.getElementById('bookmarkLabel').innerText = "Timestamp:";
                 loadBookmark(bookKey + '_audio');
             }
         }
@@ -915,7 +933,7 @@
             const query = document.getElementById('apiSearchInput').value;
             if(!query) return;
 
-            document.getElementById('currTitle').innerText = "Searching APIs...";
+            document.getElementById('currTitle').innerText = "Searching...";
             document.getElementById('currAuthor').innerText = "Please wait...";
 
             try {
@@ -945,15 +963,15 @@
                         author: bookInfo.author_name ? bookInfo.author_name.join(', ') : "Unknown Author",
                         pages: bookInfo.number_of_pages_median ? `Pages: ~${bookInfo.number_of_pages_median}` : "Pages: N/A",
                         cover: coverId,
-                        publisher: "Open Library Source"
+                        publisher: "Open Library"
                     });
                     return;
                 }
 
-                alert("No book found across Google Books or Open Library!");
+                alert("No book found!");
             } catch (error) {
                 console.error("API Fetch Error:", error);
-                alert("Error fetching metadata. Check your connection.");
+                alert("Error fetching metadata.");
             }
         }
 
@@ -984,7 +1002,7 @@
 
             document.getElementById('statTrope').innerText = p.trope;
             document.getElementById('statDamage').innerText = p.damage;
-            document.getElementById('pinBoardTitle').innerText = `Infinite Pin Board: ${p.curr.title} Focus`;
+            document.getElementById('pinBoardTitle').innerText = `Infinite Pin Board: ${p.curr.title}`;
 
             let pinHtml = '';
             p.pins.forEach(pin => {
@@ -1022,7 +1040,7 @@
             newPin.innerHTML = `
                 <span class="pin-tag-type">Quick Reaction</span>
                 <p>${reactionText}</p>
-                <p style="font-size: 0.8rem; color: var(--text-muted);">Logged via Time Machine / Reading Session</p>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Logged via Time Machine</p>
                 <span style="font-size: 0.75rem; color: var(--accent-pink); margin-top: auto;">— Just Now</span>
             `;
             canvas.prepend(newPin);
@@ -1091,7 +1109,7 @@
         }
 
         function createNewShelf() {
-            const shelfName = prompt("Enter new shelf name (e.g., DNF Shelf, Five-Star Reads):");
+            const shelfName = prompt("Enter new shelf name (e.g., DNF Shelf):");
             if(!shelfName) return;
             const books = prompt("What books are on this shelf?", "None yet");
 
@@ -1105,16 +1123,16 @@
         function exportQuotesText() {
             let textOutput = "=== TOMEKEEPER QUOTES & NOTES EXPORT ===\n\n";
             const cards = document.querySelectorAll('.pin-card');
-            cards.forEach((card, index) => {
+            cards.forEach((card) => {
                 const tag = card.querySelector('.pin-tag-type') ? card.querySelector('.pin-tag-type').innerText : 'Note';
                 const pText = card.querySelector('p') ? card.querySelector('p').innerText : '';
                 textOutput += `[${tag}] ${pText}\n\n`;
             });
             
             navigator.clipboard.writeText(textOutput).then(() => {
-                alert("All quotes and notes copied to your clipboard!");
-            }).catch(err => {
-                alert("Failed to copy to clipboard.");
+                alert("All quotes and notes copied to clipboard!");
+            }).catch(() => {
+                alert("Failed to copy.");
             });
         }
 
@@ -1154,12 +1172,17 @@
                         }
                         switchFormat(currentFormat);
                     }
-                    alert("Master backup imported successfully!");
+                    alert("Backup imported successfully!");
                 } catch(err) {
-                    alert("Invalid JSON backup file.");
+                    alert("Invalid JSON file.");
                 }
             };
             reader.readAsText(file);
+        }
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/Tome-keeper/sw.js')
+            .then(() => console.log("PWA Service Worker Registered"));
         }
 
         window.onload = function() {
