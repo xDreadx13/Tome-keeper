@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tomekeeper | Master Edition v2</title>
+    <title>Tomekeeper | Master Edition v3</title>
     <link rel="manifest" href="/Tome-keeper/manifest.json">
     <style>
         :root {
@@ -25,7 +25,6 @@
             --pin-note: #1f1418;
         }
 
-        /* Light Theme Variables */
         body.light-mode {
             --bg-color: #f4f1eb;
             --surface-color: #ffffff;
@@ -58,26 +57,26 @@
         }
 
         sidebar {
-            width: 260px;
+            width: 240px;
             background-color: var(--surface-color);
             border-right: 1px solid var(--border-color);
-            padding: 2rem 1.5rem;
+            padding: 1.5rem 1rem;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1.5rem;
             flex-shrink: 0;
         }
 
         .logo-area h1 {
             color: var(--gold-primary);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
 
         .logo-area p {
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             margin-top: 0.2rem;
         }
 
@@ -85,17 +84,17 @@
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
         .nav-links li a {
             color: var(--text-muted);
             text-decoration: none;
-            padding: 0.75rem 1rem;
+            padding: 0.6rem 0.8rem;
             border-radius: 6px;
             display: block;
             transition: all 0.2s ease;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .nav-links li a:hover, .nav-links li a.active {
@@ -104,31 +103,9 @@
             border-left: 3px solid var(--gold-primary);
         }
 
-        .countdown-box {
-            background: linear-gradient(135deg, var(--surface-hover), var(--surface-color));
-            border: 1px solid var(--gold-dark);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: auto;
-            text-align: center;
-        }
-
-        .countdown-box h4 {
-            color: var(--gold-primary);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            margin-bottom: 0.3rem;
-        }
-
-        .countdown-box p {
-            font-size: 0.9rem;
-            color: var(--text-main);
-            font-weight: 600;
-        }
-
         main {
             flex: 1;
-            padding: 2.5rem;
+            padding: 1.5rem;
             overflow-y: auto;
             max-height: 100vh;
             width: 100%;
@@ -138,30 +115,30 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             flex-wrap: wrap;
             gap: 1rem;
         }
 
         .section-header h2 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: var(--gold-light);
             font-weight: 400;
         }
 
         .header-controls {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             align-items: center;
             flex-wrap: wrap;
         }
 
         .api-search-bar {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
             background: var(--surface-color);
             border: 1px solid var(--border-color);
-            padding: 0.4rem;
+            padding: 0.3rem;
             border-radius: 6px;
             align-items: center;
         }
@@ -170,19 +147,19 @@
             background: transparent;
             border: none;
             color: var(--text-main);
-            padding: 0.3rem 0.5rem;
-            font-size: 0.9rem;
+            padding: 0.2rem 0.4rem;
+            font-size: 0.85rem;
             outline: none;
-            width: 160px;
+            width: 140px;
         }
 
         .selector-box select, .time-machine-input, .bookmark-input {
             background-color: var(--surface-color);
             color: var(--gold-light);
             border: 1px solid var(--gold-dark);
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 6px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             cursor: pointer;
         }
 
@@ -190,10 +167,11 @@
             background-color: var(--gold-primary);
             color: var(--bg-color);
             border: none;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
+            font-size: 0.85rem;
             transition: background 0.2s;
         }
 
@@ -201,120 +179,75 @@
             background-color: var(--gold-light);
         }
 
-        /* Spoiler Shield Mode */
         body.shield-active .spoiler-target {
             filter: blur(6px);
             user-select: none;
             pointer-events: none;
             transition: filter 0.3s ease;
         }
-        body.shield-active .shield-notice::after {
-            content: " [SPOILER SHIELD ENGAGED]";
-            color: var(--accent-red);
-            font-size: 0.75rem;
-        }
 
         .shield-toggle-label, .theme-toggle-label {
             display: flex;
             align-items: center;
-            gap: 0.4rem;
-            font-size: 0.85rem;
+            gap: 0.3rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             cursor: pointer;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.2rem;
         }
 
         .stat-card {
             background-color: var(--surface-color);
             border: 1px solid var(--border-color);
-            padding: 1.5rem;
+            padding: 1rem;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .stat-card h3 {
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .stat-card .value {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             color: var(--gold-primary);
             font-weight: bold;
-        }
-
-        /* Reading Goal Progress Bar */
-        .goal-progress-box {
-            background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-        }
-
-        .goal-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 0.4rem;
-        }
-
-        .goal-bar-bg {
-            background-color: var(--border-color);
-            height: 10px;
-            border-radius: 5px;
-            overflow: hidden;
-            width: 100%;
-        }
-
-        .goal-bar-fill {
-            background-color: var(--gold-primary);
-            height: 100%;
-            width: 44%;
-            transition: width 0.3s;
-        }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
         }
 
         .card-container {
             background-color: var(--surface-color);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
         }
 
         .card-container h3 {
             color: var(--gold-primary);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.4rem;
         }
 
         .current-read-flex {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             align-items: center;
             flex-wrap: wrap;
         }
 
         .book-mock-cover {
-            width: 100px;
-            height: 150px;
+            width: 80px;
+            height: 120px;
             background: linear-gradient(135deg, var(--surface-hover), var(--border-color));
             border: 1px solid var(--gold-dark);
             border-radius: 4px;
@@ -322,8 +255,8 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0.5rem;
-            font-size: 0.8rem;
+            padding: 0.4rem;
+            font-size: 0.75rem;
             color: var(--gold-light);
             overflow: hidden;
             flex-shrink: 0;
@@ -336,23 +269,23 @@
         }
 
         .book-info h4 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 0.2rem;
         }
 
         .book-info p {
             color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 0.4rem;
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
         }
 
         .progress-bar-bg {
             background-color: var(--border-color);
-            height: 8px;
-            border-radius: 4px;
+            height: 6px;
+            border-radius: 3px;
             width: 100%;
             overflow: hidden;
-            margin-bottom: 0.5rem;
+            margin-top: 0.4rem;
         }
 
         .progress-bar-fill {
@@ -361,18 +294,17 @@
             width: 15%;
         }
 
-        /* Format Syncer Styles */
         .format-tabs {
             display: flex;
-            gap: 0.5rem;
-            margin-bottom: 0.8rem;
+            gap: 0.4rem;
+            margin-bottom: 0.6rem;
         }
 
         .btn-format {
             background: var(--surface-hover);
             border: 1px solid var(--border-color);
             color: var(--text-muted);
-            padding: 0.3rem 0.6rem;
+            padding: 0.2rem 0.5rem;
             border-radius: 4px;
             font-size: 0.75rem;
             cursor: pointer;
@@ -384,104 +316,73 @@
             background: var(--bg-color);
         }
 
-        /* Codex Glossary Styles */
-        .codex-search {
-            width: 100%;
-            background: var(--bg-color);
+        /* Real Visual Bookshelf Styles */
+        .bookshelf-shelf {
+            background: linear-gradient(180deg, rgba(20,20,20,0.9), rgba(10,10,10,0.95));
             border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 0.5rem;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .codex-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-
-        .codex-item {
-            background: var(--surface-hover);
-            border: 1px solid var(--border-color);
-            padding: 0.6rem 0.8rem;
+            border-bottom: 6px solid var(--gold-dark);
             border-radius: 6px;
-        }
-
-        .codex-item h5 {
-            color: var(--gold-light);
-            font-size: 0.9rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .codex-item p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* Custom Shelves Section */
-        .shelves-container {
-            grid-column: span 2;
-            background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .shelves-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .shelf-box {
-            background: var(--surface-hover);
-            border: 1px solid var(--border-color);
             padding: 1rem;
-            border-radius: 6px;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
+            margin-bottom: 1rem;
         }
 
-        .shelf-box h5 {
+        .shelf-title {
             color: var(--gold-light);
             font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .shelf-box p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
+        .shelf-books {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .shelf-book-item {
+            width: 70px;
+            height: 100px;
+            background: var(--surface-hover);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0.3rem;
+            font-size: 0.65rem;
+            color: var(--gold-light);
+            flex-shrink: 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
 
         /* Pin Board Section */
         .pin-board-section {
-            grid-column: span 2;
             background-color: var(--surface-color);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 1.5rem;
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
         }
 
         .pin-board-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.4rem;
             flex-wrap: wrap;
             gap: 0.5rem;
         }
 
         .pin-board-header h3 {
             color: var(--gold-primary);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin: 0;
             border: none;
             padding: 0;
@@ -489,8 +390,8 @@
 
         .reaction-toolbar {
             display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+            gap: 0.4rem;
+            margin-bottom: 0.8rem;
             flex-wrap: wrap;
             align-items: center;
         }
@@ -499,26 +400,20 @@
             background-color: var(--surface-hover);
             border: 1px solid var(--border-color);
             color: var(--gold-light);
-            padding: 0.4rem 0.8rem;
+            padding: 0.3rem 0.6rem;
             border-radius: 6px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-react:hover {
-            border-color: var(--gold-primary);
-            background-color: var(--surface-hover);
         }
 
         .custom-pin-form {
             background: var(--surface-hover);
             border: 1px solid var(--border-color);
-            padding: 1rem;
+            padding: 0.8rem;
             border-radius: 8px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             display: none;
-            gap: 0.8rem;
+            gap: 0.6rem;
             flex-direction: column;
         }
 
@@ -526,55 +421,53 @@
             background: var(--bg-color);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 0.5rem;
+            padding: 0.4rem;
             border-radius: 4px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .pin-canvas {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1.2rem;
-            min-height: 250px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            min-height: 200px;
         }
 
         .pin-card {
             background-color: var(--surface-hover);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 1.2rem;
+            padding: 1rem;
             position: relative;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
-            gap: 0.6rem;
+            gap: 0.5rem;
         }
 
         .pin-card::before {
             content: "📌";
             position: absolute;
-            top: -10px;
+            top: -8px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .pin-card.quote-pin { border-top: 3px solid var(--gold-primary); background-color: var(--pin-quote); }
-        .pin-card.image-pin { border-top: 3px solid var(--accent-blue); background-color: var(--pin-image); }
-        .pin-card.theory-pin { border-top: 3px solid var(--accent-red); background-color: var(--pin-note); }
         .pin-card.reaction-pin { border-top: 3px solid var(--accent-pink); background-color: var(--surface-hover); }
         .pin-card.custom-pin { border-top: 3px solid var(--gold-light); background-color: var(--surface-hover); }
 
         .pin-tag-type {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--text-muted);
         }
 
         .pin-card p {
-            font-size: 0.9rem;
-            line-height: 1.4;
+            font-size: 0.85rem;
+            line-height: 1.3;
         }
 
         .time-machine-box {
@@ -582,7 +475,7 @@
             border: 1px solid var(--border-color);
             padding: 1rem;
             border-radius: 8px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -590,15 +483,7 @@
             flex-wrap: wrap;
         }
 
-        .backup-toolbar {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        /* --- MOBILE RESPONSIVE MEDIA QUERY --- */
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
             body {
                 flex-direction: column;
             }
@@ -606,24 +491,11 @@
                 width: 100%;
                 border-right: none;
                 border-bottom: 1px solid var(--border-color);
-                padding: 1.2rem 1rem;
-                gap: 1rem;
-            }
-            .countdown-box {
-                display: none;
+                padding: 1rem;
             }
             main {
                 padding: 1rem;
                 max-height: none;
-            }
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-            .shelves-container, .pin-board-section {
-                grid-column: span 1;
-            }
-            .section-header h2 {
-                font-size: 1.4rem;
             }
         }
     </style>
@@ -633,28 +505,22 @@
     <sidebar>
         <div class="logo-area">
             <h1>Tomekeeper</h1>
-            <p>Master Edition v2</p>
+            <p>Master Edition v3</p>
         </div>
         <ul class="nav-links">
-            <li><a href="#" class="active">Dashboard & Board</a></li>
-            <li><a href="#">Library & Shelf</a></li>
-            <li><a href="#">Auto-Fill Tropes</a></li>
-            <li><a href="#">Codex Glossary</a></li>
+            <li><a href="#" class="active">Dashboard</a></li>
+            <li><a href="#bookshelfSection">My Bookshelf</a></li>
+            <li><a href="#pinBoardSection">Pin Board</a></li>
         </ul>
-
-        <div class="countdown-box">
-            <h4>Book 3.5 Drop</h4>
-            <p>September 29, 2026</p>
-        </div>
     </sidebar>
 
     <main>
         <div class="section-header">
-            <h2 class="shield-notice">Welcome back, Sky</h2>
+            <h2>Welcome back, Sky</h2>
             <div class="header-controls">
                 <div class="api-search-bar">
                     <input type="text" id="apiSearchInput" class="api-search-input" placeholder="Search book...">
-                    <button class="btn-gold" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="fetchLiveBookMetadata()">Fetch</button>
+                    <button class="btn-gold" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;" onclick="fetchLiveBookMetadata()">Fetch</button>
                 </div>
                 <label class="theme-toggle-label">
                     <input type="checkbox" id="themeToggle" onclick="toggleTheme(this)"> Light
@@ -672,37 +538,6 @@
             </div>
         </div>
 
-        <!-- Reading Goal Progress Bar -->
-        <div class="goal-progress-box spoiler-target">
-            <div class="goal-header">
-                <span>Annual Reading Goal (Target: 5 Books)</span>
-                <span id="goalText">2.2 / 5 Books (44%)</span>
-            </div>
-            <div class="goal-bar-bg">
-                <div class="goal-bar-fill" id="goalBarFill"></div>
-            </div>
-        </div>
-
-        <!-- Reading Time Machine & JSON Backup Bar -->
-        <div class="time-machine-box spoiler-target">
-            <div>
-                <strong style="color: var(--gold-light); font-size: 0.9rem;">Reading Time Machine & Backup</strong>
-                <p style="font-size: 0.8rem; color: var(--text-muted);">Log sessions or export/import data.</p>
-            </div>
-            <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-                <div style="display: flex; gap: 0.5rem; align-items: center;">
-                    <input type="number" id="sessionMinutes" class="time-machine-input" placeholder="Mins" style="width: 80px;" min="1" value="45">
-                    <button class="btn-gold" onclick="logReadingSession()">Log</button>
-                </div>
-                <div class="backup-toolbar">
-                    <button class="btn-gold" style="font-size: 0.8rem; background: var(--surface-hover); color: var(--gold-light); border: 1px solid var(--gold-dark);" onclick="exportUserData()">Export</button>
-                    <label class="btn-gold" style="font-size: 0.8rem; cursor: pointer; background: var(--surface-hover); color: var(--gold-light); border: 1px solid var(--gold-dark); padding: 0.5rem 1rem; border-radius: 6px; display: inline-block;">
-                        Import <input type="file" id="importFile" style="display: none;" onchange="importUserData(event)">
-                    </label>
-                </div>
-            </div>
-        </div>
-
         <div class="stats-grid spoiler-target">
             <div class="stat-card">
                 <h3>Books Read (2026)</h3>
@@ -710,485 +545,207 @@
             </div>
             <div class="stat-card">
                 <h3>Reading Velocity</h3>
-                <div class="value" id="velocityStat" style="font-size: 1.4rem;">13 Days / Book</div>
+                <div class="value" id="velocityStat" style="font-size: 1.2rem;">13 Days / Book</div>
             </div>
             <div class="stat-card">
-                <h3>Top Trope Tag</h3>
-                <div class="value" style="font-size: 1.1rem; padding-top: 0.3rem;" id="statTrope">Enemies-to-Lovers</div>
+                <h3>Top Trope</h3>
+                <div class="value" style="font-size: 0.95rem; padding-top: 0.2rem;" id="statTrope">Enemies-to-Lovers</div>
             </div>
             <div class="stat-card">
                 <h3>Emotional Damage</h3>
-                <div class="value" style="color: var(--accent-red); font-size: 1.4rem;" id="statDamage">9.8 / 10</div>
+                <div class="value" style="color: var(--accent-red); font-size: 1.2rem;" id="statDamage">9.8 / 10</div>
             </div>
         </div>
 
-        <div class="dashboard-grid">
+        <!-- Currently Reading Card -->
+        <div class="card-container spoiler-target">
+            <h3>Currently Reading & Format</h3>
+            <div class="format-tabs">
+                <button class="btn-format active" onclick="switchFormat('physical')" id="btnPhysical">📖 Physical</button>
+                <button class="btn-format" onclick="switchFormat('audio')" id="btnAudio">🎧 Audio</button>
+            </div>
+            <div class="current-read-flex" style="margin-bottom: 0.8rem;">
+                <div class="book-mock-cover" id="currCover">
+                    <strong>Onyx Storm</strong>
+                </div>
+                <div class="book-info" style="flex: 1; min-width: 140px;">
+                    <h4 id="currTitle">Onyx Storm</h4>
+                    <p id="currAuthor" style="color: var(--gold-light);">by Rebecca Yarros</p>
+                    <p id="currSeries">Series: The Empyrean (Book 3)</p>
+                    <p id="formatStats">Pages: ~623 | Chapters: 65</p>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progressBar" style="width: 15%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div style="background: var(--surface-hover); padding: 0.6rem; border-radius: 6px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                <span style="font-size: 0.8rem; color: var(--text-muted);" id="bookmarkLabel">Spot:</span>
+                <input type="text" id="bookmarkInput" class="bookmark-input" placeholder="e.g. Chapter 4" style="width: 110px;" oninput="saveBookmark()">
+            </div>
+        </div>
+
+        <!-- Visual Bookshelf Section -->
+        <div class="card-container spoiler-target" id="bookshelfSection">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                <h3 style="margin: 0; border: none; padding: 0;">My Bookshelf</h3>
+                <button class="btn-gold" style="padding: 0.2rem 0.6rem; font-size: 0.75rem;" onclick="createNewShelf()">+ Shelf</button>
+            </div>
             
-            <!-- Currently Reading Card with Dual Format Syncer -->
-            <div class="card-container spoiler-target" style="margin-bottom: 0;">
-                <h3>Currently Reading & Format</h3>
-                
-                <div class="format-tabs">
-                    <button class="btn-format active" onclick="switchFormat('physical')" id="btnPhysical">📖 Physical</button>
-                    <button class="btn-format" onclick="switchFormat('audio')" id="btnAudio">🎧 Audio</button>
-                </div>
-
-                <div class="current-read-flex" style="margin-bottom: 1rem;">
-                    <div class="book-mock-cover" id="currCover">
-                        <strong>Onyx Storm</strong>
-                    </div>
-                    <div class="book-info" style="flex: 1; min-width: 140px;">
-                        <h4 id="currTitle">Onyx Storm</h4>
-                        <p id="currAuthor" style="color: var(--gold-light);">by Rebecca Yarros</p>
-                        <p id="currSeries">Series: The Empyrean (Book 3)</p>
-                        <p id="formatStats">Pages: ~623 | Chapters: 65</p>
-                        <div class="progress-bar-bg" style="margin-top: 0.5rem;">
-                            <div class="progress-bar-fill" id="progressBar" style="width: 15%;"></div>
-                        </div>
+            <div id="bookshelfContainer">
+                <div class="bookshelf-shelf">
+                    <div class="shelf-title">⭐ 5-Star Hall of Fame</div>
+                    <div class="shelf-books">
+                        <div class="shelf-book-item"><strong>Fourth Wing</strong></div>
+                        <div class="shelf-book-item"><strong>Iron Flame</strong></div>
                     </div>
                 </div>
-                <div style="background: var(--surface-hover); padding: 0.75rem; border-radius: 6px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
-                    <span style="font-size: 0.85rem; color: var(--text-muted);" id="bookmarkLabel">Spot:</span>
-                    <input type="text" id="bookmarkInput" class="bookmark-input" placeholder="e.g. Chapter 4" style="width: 120px;" oninput="saveBookmark()">
-                </div>
-            </div>
-
-            <!-- Codex Lore Glossary Tracker -->
-            <div class="card-container spoiler-target" style="margin-bottom: 0;">
-                <h3>Codex Lore Glossary</h3>
-                <input type="text" id="codexSearch" class="codex-search" placeholder="Search terms, dragons..." oninput="filterCodex(this.value)">
-                <div class="codex-list" id="codexList">
-                    <div class="codex-item">
-                        <h5>Basgiath War College</h5>
-                        <p>The brutal military academy where cadets train as riders or scribes.</p>
-                    </div>
-                    <div class="codex-item">
-                        <h5>Signet Power</h5>
-                        <p>A unique magical ability manifested when a cadet channels through a dragon bond.</p>
-                    </div>
-                    <div class="codex-item">
-                        <h5>The Empyrean</h5>
-                        <p>The council of senior dragons governing dragonkind.</p>
+                <div class="bookshelf-shelf">
+                    <div class="shelf-title">🔥 Midnight Obsessions</div>
+                    <div class="shelf-books">
+                        <div class="shelf-book-item"><strong>Onyx Storm</strong></div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Custom Shelves Section -->
-            <div class="shelves-container spoiler-target">
-                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
-                    <h3 style="color: var(--gold-primary); font-size: 1.2rem; margin: 0;">Custom Bookshelves</h3>
-                    <button class="btn-gold" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;" onclick="createNewShelf()">+ Add Shelf</button>
-                </div>
-                <div class="shelves-grid" id="shelvesGrid">
-                    <div class="shelf-box">
-                        <h5>⭐ 5-Star Hall of Fame</h5>
-                        <p>Fourth Wing, Iron Flame</p>
-                    </div>
-                    <div class="shelf-box">
-                        <h5>🔥 Midnight Obsessions</h5>
-                        <p>Onyx Storm (Current)</p>
-                    </div>
-                    <div class="shelf-box">
-                        <h5>💀 Emotional Damage</h5>
-                        <p>End of Iron Flame</p>
-                    </div>
+        <!-- Pin Board Section -->
+        <div class="pin-board-section" id="pinBoardSection">
+            <div class="pin-board-header">
+                <h3 id="pinBoardTitle">Infinite Pin Board</h3>
+                <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+                    <button class="btn-gold" style="padding: 0.2rem 0.6rem; font-size: 0.75rem; background: var(--surface-hover); color: var(--gold-light); border: 1px solid var(--gold-dark);" onclick="exportQuotesText()">📋 Export</button>
+                    <button class="btn-gold" style="padding: 0.2rem 0.6rem; font-size: 0.75rem;" onclick="toggleCustomPinForm()">+ Pin</button>
                 </div>
             </div>
 
-            <!-- Pin Board Section -->
-            <div class="pin-board-section">
-                <div class="pin-board-header">
-                    <h3 id="pinBoardTitle">Infinite Pin Board</h3>
-                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                        <button class="btn-gold" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; background: var(--surface-hover); color: var(--gold-light); border: 1px solid var(--gold-dark);" onclick="exportQuotesText()">📋 Export Quotes</button>
-                        <button class="btn-gold" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;" onclick="toggleCustomPinForm()">+ Add Pin</button>
-                    </div>
-                </div>
-
-                <div class="custom-pin-form" id="customPinForm">
-                    <strong style="color: var(--gold-light); font-size: 0.9rem;">Create Custom Pin</strong>
-                    <select id="customPinType">
-                        <option value="theory-pin">Theory / Note</option>
-                        <option value="quote-pin">Quote</option>
-                        <option value="image-pin">Aesthetic / Visual</option>
-                    </select>
-                    <input type="text" id="customPinTag" placeholder="Tag title (e.g. Chapter 5 Theory)">
-                    <textarea id="customPinContent" rows="3" placeholder="Type your notes, quotes, or thoughts here..."></textarea>
-                    <button class="btn-gold" style="align-self: flex-start;" onclick="submitCustomPin()">Pin to Board</button>
-                </div>
-
-                <div class="reaction-toolbar">
-                    <span style="font-size: 0.8rem; color: var(--text-muted); margin-right: 0.5rem;">Quick Reaction:</span>
-                    <button class="btn-react" onclick="addReactionPin('😱 Gasp / Plot Twist')">😱 Gasp</button>
-                    <button class="btn-react" onclick="addReactionPin('😭 Emotional Damage')">😭 Crying</button>
-                    <button class="btn-react" onclick="addReactionPin('🤬 Absolute Rage')">🤬 Rage</button>
-                    <button class="btn-react" onclick="addReactionPin('✨ Major Swoon')">✨ Swoon</button>
-                </div>
-                
-                <div class="pin-canvas" id="pinCanvas">
-                    <div class="pin-card quote-pin">
-                        <span class="pin-tag-type">Favorite Quote / Line</span>
-                        <p><em>"Dragging shadows where light shouldn't reach..."</em></p>
-                        <span style="font-size: 0.75rem; color: var(--gold-dark); margin-top: auto;">— Chapter 2 Notes</span>
-                    </div>
-                    <div class="pin-card reaction-pin">
-                        <span class="pin-tag-type">Quick Reaction</span>
-                        <p>🤬 Absolute Rage</p>
-                        <p style="font-size: 0.8rem; color: var(--text-muted);">Melgren leaving Xaden's participation to Grady's discretion is a massive trap.</p>
-                        <span style="font-size: 0.75rem; color: var(--accent-pink); margin-top: auto;">— Chapter 4</span>
-                    </div>
-                </div>
+            <div class="custom-pin-form" id="customPinForm">
+                <strong style="color: var(--gold-light); font-size: 0.85rem;">Create Custom Pin</strong>
+                <select id="customPinType">
+                    <option value="theory-pin">Theory / Note</option>
+                    <option value="quote-pin">Quote</option>
+                </select>
+                <input type="text" id="customPinTag" placeholder="Tag title (e.g. Chapter 5)">
+                <textarea id="customPinContent" rows="2" placeholder="Type notes or quotes..."></textarea>
+                <button class="btn-gold" style="align-self: flex-start;" onclick="submitCustomPin()">Pin to Board</button>
             </div>
 
+            <div class="reaction-toolbar">
+                <span style="font-size: 0.75rem; color: var(--text-muted); margin-right: 0.3rem;">Reaction:</span>
+                <button class="btn-react" onclick="addReactionPin('😱 Gasp')">😱 Gasp</button>
+                <button class="btn-react" onclick="addReactionPin('😭 Crying')">😭 Crying</button>
+                <button class="btn-react" onclick="addReactionPin('🤬 Rage')">🤬 Rage</button>
+                <button class="btn-react" onclick="addReactionPin('✨ Swoon')">✨ Swoon</button>
+            </div>
+            
+            <div class="pin-canvas" id="pinCanvas">
+                <div class="pin-card quote-pin">
+                    <span class="pin-tag-type">Favorite Quote</span>
+                    <p><em>"Dragging shadows where light shouldn't reach..."</em></p>
+                    <span style="font-size: 0.7rem; color: var(--gold-dark); margin-top: auto;">— Chapter 2</span>
+                </div>
+            </div>
         </div>
     </main>
 
     <script>
         let currentFormat = 'physical';
-
         const profiles = {
-            onyx: {
-                curr: {
-                    title: "Onyx Storm",
-                    author: "by Rebecca Yarros",
-                    series: "Series: The Empyrean (Book 3 of 5)",
-                    statsPhysical: "Pages: ~623 | Chapters: 65",
-                    statsAudio: "Duration: 21h 45m | Narrator: Devney Perry",
-                    progress: "15%"
-                },
-                trope: "Enemies-to-Lovers",
-                damage: "9.8 / 10",
-                pins: [
-                    {type: "quote-pin", tag: "Favorite Quote / Line", content: '<em>"Dragging shadows where light shouldn\'t reach..."</em>', note: "— Chapter 2 Notes"},
-                    {type: "reaction-pin", tag: "Quick Reaction", content: "🤬 Absolute Rage", desc: "Melgren leaving Xaden's participation to Grady's discretion is a massive trap.", note: "— Chapter 4"}
-                ],
-                codex: [
-                    {term: "Basgiath War College", desc: "The brutal military academy where cadets train as riders or scribes."},
-                    {term: "Signet Power", desc: "A unique magical ability manifested when a cadet channels through a dragon bond."},
-                    {term: "The Empyrean", desc: "The council of senior dragons governing dragonkind."}
-                ]
-            },
-            iron: {
-                curr: {
-                    title: "Iron Flame",
-                    author: "by Rebecca Yarros",
-                    series: "Series: The Empyrean (Book 2 of 5)",
-                    statsPhysical: "Pages: 623 | Chapters: 66",
-                    statsAudio: "Duration: 23h 10m | Narrator: Devney Perry",
-                    progress: "100%"
-                },
-                trope: "Proximity & Betrayal",
-                damage: "10/10 (Devastated)",
-                pins: [
-                    {type: "quote-pin", tag: "Iconic Line", content: '<em>"I am the weapon."</em>', note: "— Core Theme"},
-                    {type: "reaction-pin", tag: "Ending Reaction", content: "😭 Emotional Damage", desc: "That final chapter twist had me staring at the wall for three business days.", note: "— Post-Book 2 Meltdown"}
-                ],
-                codex: [
-                    {term: "Aretia", desc: "The rebel city rebuilding in secret."},
-                    {term: "Venin", desc: "Wielders who channel power from the earth, turning their eyes red and losing their soul."}
-                ]
-            },
-            fourth: {
-                curr: {
-                    title: "Fourth Wing",
-                    author: "by Rebecca Yarros",
-                    series: "Series: The Empyrean (Book 1 of 5)",
-                    statsPhysical: "Pages: 516 | Chapters: 39",
-                    statsAudio: "Duration: 20h 40m | Narrator: Devney Perry",
-                    progress: "100%"
-                },
-                trope: "Shadow Daddy / Academy",
-                damage: "8.5 / 10",
-                pins: [
-                    {type: "quote-pin", tag: "Iconic Line", content: '<em>"Turn the page."</em>', note: "— Introduction to Basgiath"},
-                    {type: "reaction-pin", tag: "Vibe Reaction", content: "✨ Major Swoon", desc: "The shadow manipulation and chair scene set the tone for everything.", note: "— Early Read"}
-                ],
-                codex: [
-                    {term: "Tairn & Andarna", desc: "Violet's bonded dragons: a massive black dagger-tail and a rare golden feather-tail."},
-                    {term: "The Threshing", desc: "The deadly ritual where first-years bond with dragons."}
-                ]
-            }
+            onyx: { curr: { title: "Onyx Storm", author: "by Rebecca Yarros", series: "Series: The Empyrean (Book 3)", statsPhysical: "Pages: ~623 | Chapters: 65", statsAudio: "Duration: 21h 45m", progress: "15%" }, trope: "Enemies-to-Lovers", damage: "9.8 / 10" },
+            iron: { curr: { title: "Iron Flame", author: "by Rebecca Yarros", series: "Series: The Empyrean (Book 2)", statsPhysical: "Pages: 623 | Chapters: 66", statsAudio: "Duration: 23h 10m", progress: "100%" }, trope: "Proximity & Betrayal", damage: "10 / 10" },
+            fourth: { curr: { title: "Fourth Wing", author: "by Rebecca Yarros", series: "Series: The Empyrean (Book 1)", statsPhysical: "Pages: 516 | Chapters: 39", statsAudio: "Duration: 20h 40m", progress: "100%" }, trope: "Shadow Daddy", damage: "8.5 / 10" }
         };
 
         function switchFormat(format) {
             currentFormat = format;
             const bookKey = document.getElementById('bookSelect').value;
             const p = profiles[bookKey];
-
             document.getElementById('btnPhysical').classList.toggle('active', format === 'physical');
             document.getElementById('btnAudio').classList.toggle('active', format === 'audio');
-
-            if(format === 'physical') {
-                document.getElementById('formatStats').innerText = p.curr.statsPhysical;
-                document.getElementById('bookmarkLabel').innerText = "Spot:";
-                loadBookmark(bookKey + '_physical');
-            } else {
-                document.getElementById('formatStats').innerText = p.curr.statsAudio;
-                document.getElementById('bookmarkLabel').innerText = "Timestamp:";
-                loadBookmark(bookKey + '_audio');
-            }
-        }
-
-        async function fetchLiveBookMetadata() {
-            const query = document.getElementById('apiSearchInput').value;
-            if(!query) return;
-
-            document.getElementById('currTitle').innerText = "Searching...";
-            document.getElementById('currAuthor').innerText = "Please wait...";
-
-            try {
-                let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:${encodeURIComponent(query)}`);
-                let data = await response.json();
-
-                if (data.items && data.items.length > 0) {
-                    let bookInfo = data.items[0].volumeInfo;
-                    updateDashboardFromAPI({
-                        title: bookInfo.title,
-                        author: bookInfo.authors ? bookInfo.authors.join(', ') : "Unknown Author",
-                        pages: bookInfo.pageCount ? `Pages: ${bookInfo.pageCount}` : "Pages: Unknown",
-                        cover: bookInfo.imageLinks ? bookInfo.imageLinks.thumbnail : null,
-                        publisher: bookInfo.publisher || "Independent"
-                    });
-                    return;
-                }
-
-                let olResponse = await fetch(`https://openlibrary.org/search.json?title=${encodeURIComponent(query)}`);
-                let olData = await olResponse.json();
-
-                if (olData.docs && olData.docs.length > 0) {
-                    let bookInfo = olData.docs[0];
-                    let coverId = bookInfo.cover_i ? `https://covers.openlibrary.org/b/id/${bookInfo.cover_i}-M.jpg` : null;
-                    updateDashboardFromAPI({
-                        title: bookInfo.title,
-                        author: bookInfo.author_name ? bookInfo.author_name.join(', ') : "Unknown Author",
-                        pages: bookInfo.number_of_pages_median ? `Pages: ~${bookInfo.number_of_pages_median}` : "Pages: N/A",
-                        cover: coverId,
-                        publisher: "Open Library"
-                    });
-                    return;
-                }
-
-                alert("No book found!");
-            } catch (error) {
-                console.error("API Fetch Error:", error);
-                alert("Error fetching metadata.");
-            }
-        }
-
-        function updateDashboardFromAPI(book) {
-            document.getElementById('currTitle').innerText = book.title;
-            document.getElementById('currAuthor').innerText = `by ${book.author}`;
-            document.getElementById('currSeries').innerText = `Publisher: ${book.publisher}`;
-            document.getElementById('formatStats').innerText = book.pages;
-            
-            const coverDiv = document.getElementById('currCover');
-            if(book.cover) {
-                coverDiv.innerHTML = `<img src="${book.cover}" alt="Book Cover">`;
-            } else {
-                coverDiv.innerHTML = `<strong>${book.title}</strong>`;
-            }
+            document.getElementById('formatStats').innerText = format === 'physical' ? p.curr.statsPhysical : p.curr.statsAudio;
+            document.getElementById('bookmarkLabel').innerText = format === 'physical' ? "Spot:" : "Timestamp:";
         }
 
         function switchBookProfile(key) {
             const p = profiles[key];
-            
             document.getElementById('currTitle').innerText = p.curr.title;
             document.getElementById('currAuthor').innerText = p.curr.author;
             document.getElementById('currSeries').innerText = p.curr.series;
             document.getElementById('progressBar').style.width = p.curr.progress;
             document.getElementById('currCover').innerHTML = `<strong>${p.curr.title}</strong>`;
-
-            switchFormat(currentFormat);
-
             document.getElementById('statTrope').innerText = p.trope;
             document.getElementById('statDamage').innerText = p.damage;
-            document.getElementById('pinBoardTitle').innerText = `Infinite Pin Board: ${p.curr.title}`;
+            switchFormat(currentFormat);
+        }
 
-            let pinHtml = '';
-            p.pins.forEach(pin => {
-                if(pin.type === 'reaction-pin') {
-                    pinHtml += `<div class="pin-card ${pin.type}"><span class="pin-tag-type">${pin.tag}</span><p>${pin.content}</p><p style="font-size: 0.8rem; color: var(--text-muted);">${pin.desc}</p><span style="font-size: 0.75rem; color: var(--accent-pink); margin-top: auto;">${pin.note}</span></div>`;
-                } else {
-                    pinHtml += `<div class="pin-card ${pin.type}"><span class="pin-tag-type">${pin.tag}</span><p>${pin.content}</p><span style="font-size: 0.75rem; color: var(--gold-dark); margin-top: auto;">${pin.note}</span></div>`;
+        async function fetchLiveBookMetadata() {
+            const query = document.getElementById('apiSearchInput').value;
+            if(!query) return;
+            try {
+                let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:${encodeURIComponent(query)}`);
+                let data = await response.json();
+                if (data.items && data.items.length > 0) {
+                    let b = data.items[0].volumeInfo;
+                    document.getElementById('currTitle').innerText = b.title;
+                    document.getElementById('currAuthor').innerText = `by ${b.authors ? b.authors.join(', ') : 'Unknown'}`;
+                    document.getElementById('formatStats').innerText = b.pageCount ? `Pages: ${b.pageCount}` : 'Pages: N/A';
+                    if(b.imageLinks) document.getElementById('currCover').innerHTML = `<img src="${b.imageLinks.thumbnail}" alt="Cover">`;
                 }
-            });
-            document.getElementById('pinCanvas').innerHTML = pinHtml;
-
-            let codexHtml = '';
-            p.codex.forEach(c => {
-                codexHtml += `<div class="codex-item"><h5>${c.term}</h5><p>${c.desc}</p></div>`;
-            });
-            document.getElementById('codexList').innerHTML = codexHtml;
+            } catch(e) { alert("Fetch error"); }
         }
 
-        function filterCodex(query) {
-            const currentKey = document.getElementById('bookSelect').value;
-            const items = profiles[currentKey].codex;
-            const filtered = items.filter(i => i.term.toLowerCase().includes(query.toLowerCase()) || i.desc.toLowerCase().includes(query.toLowerCase()));
-            
-            let codexHtml = '';
-            filtered.forEach(c => {
-                codexHtml += `<div class="codex-item"><h5>${c.term}</h5><p>${c.desc}</p></div>`;
-            });
-            document.getElementById('codexList').innerHTML = codexHtml || '<div class="codex-item"><p>No matching lore found.</p></div>';
-        }
-
-        function addReactionPin(reactionText) {
+        function addReactionPin(text) {
             const canvas = document.getElementById('pinCanvas');
-            const newPin = document.createElement('div');
-            newPin.className = 'pin-card reaction-pin';
-            newPin.innerHTML = `
-                <span class="pin-tag-type">Quick Reaction</span>
-                <p>${reactionText}</p>
-                <p style="font-size: 0.8rem; color: var(--text-muted);">Logged via Time Machine</p>
-                <span style="font-size: 0.75rem; color: var(--accent-pink); margin-top: auto;">— Just Now</span>
-            `;
-            canvas.prepend(newPin);
+            const p = document.createElement('div');
+            p.className = 'pin-card reaction-pin';
+            p.innerHTML = `<span class="pin-tag-type">Reaction</span><p>${text}</p><span style="font-size: 0.7rem; color: var(--accent-pink); margin-top: auto;">— Just Now</span>`;
+            canvas.prepend(p);
         }
 
         function toggleCustomPinForm() {
-            const form = document.getElementById('customPinForm');
-            form.style.display = form.style.display === 'flex' ? 'none' : 'flex';
+            const f = document.getElementById('customPinForm');
+            f.style.display = f.style.display === 'flex' ? 'none' : 'flex';
         }
 
         function submitCustomPin() {
-            const tag = document.getElementById('customPinTag').value || 'Custom Note';
+            const tag = document.getElementById('customPinTag').value || 'Note';
             const content = document.getElementById('customPinContent').value;
             if(!content) return;
-
             const canvas = document.getElementById('pinCanvas');
-            const newPin = document.createElement('div');
-            newPin.className = `pin-card custom-pin`;
-            newPin.innerHTML = `
-                <span class="pin-tag-type">${tag}</span>
-                <p>${content}</p>
-                <span style="font-size: 0.75rem; color: var(--gold-light); margin-top: auto;">— User Created</span>
-            `;
-            canvas.prepend(newPin);
+            const p = document.createElement('div');
+            p.className = 'pin-card custom-pin';
+            p.innerHTML = `<span class="pin-tag-type">${tag}</span><p>${content}</p><span style="font-size: 0.7rem; color: var(--gold-light); margin-top: auto;">— User Created</span>`;
+            canvas.prepend(p);
             document.getElementById('customPinContent').value = '';
             document.getElementById('customPinTag').value = '';
             toggleCustomPinForm();
         }
 
-        function logReadingSession() {
-            const mins = document.getElementById('sessionMinutes').value;
-            if(!mins) return;
-            addReactionPin(`⏱️ Read for ${mins} minutes straight!`);
-            const velocity = document.getElementById('velocityStat');
-            velocity.style.color = 'var(--gold-light)';
-            setTimeout(() => velocity.style.color = 'var(--gold-primary)', 1000);
-        }
-
-        function toggleSpoilerShield(checkbox) {
-            if(checkbox.checked) {
-                document.body.classList.add('shield-active');
-            } else {
-                document.body.classList.remove('shield-active');
-            }
-        }
-
-        function toggleTheme(checkbox) {
-            if(checkbox.checked) {
-                document.body.classList.add('light-mode');
-                localStorage.setItem('tomekeeper_theme', 'light');
-            } else {
-                document.body.classList.remove('light-mode');
-                localStorage.setItem('tomekeeper_theme', 'dark');
-            }
-        }
-
-        function saveBookmark() {
-            const bookKey = document.getElementById('bookSelect').value;
-            const spot = document.getElementById('bookmarkInput').value;
-            localStorage.setItem('tomekeeper_bookmark_' + bookKey + '_' + currentFormat, spot);
-        }
-
-        function loadBookmark(storageKey) {
-            const savedSpot = localStorage.getItem('tomekeeper_bookmark_' + storageKey) || (currentFormat === 'physical' ? 'Chapter 1' : '00:00');
-            document.getElementById('bookmarkInput').value = savedSpot;
-        }
-
         function createNewShelf() {
-            const shelfName = prompt("Enter new shelf name (e.g., DNF Shelf):");
-            if(!shelfName) return;
-            const books = prompt("What books are on this shelf?", "None yet");
-
-            const grid = document.getElementById('shelvesGrid');
-            const newBox = document.createElement('div');
-            newBox.className = 'shelf-box';
-            newBox.innerHTML = `<h5>📚 ${shelfName}</h5><p>${books}</p>`;
-            grid.appendChild(newBox);
+            const name = prompt("Enter shelf name (e.g. TBR Shelf):");
+            if(!name) return;
+            const container = document.getElementById('bookshelfContainer');
+            const shelf = document.createElement('div');
+            shelf.className = 'bookshelf-shelf';
+            shelf.innerHTML = `<div class="shelf-title">📚 ${name}</div><div class="shelf-books"><div class="shelf-book-item"><strong>Empty</strong></div></div>`;
+            container.appendChild(shelf);
         }
 
-        function exportQuotesText() {
-            let textOutput = "=== TOMEKEEPER QUOTES & NOTES EXPORT ===\n\n";
-            const cards = document.querySelectorAll('.pin-card');
-            cards.forEach((card) => {
-                const tag = card.querySelector('.pin-tag-type') ? card.querySelector('.pin-tag-type').innerText : 'Note';
-                const pText = card.querySelector('p') ? card.querySelector('p').innerText : '';
-                textOutput += `[${tag}] ${pText}\n\n`;
-            });
-            
-            navigator.clipboard.writeText(textOutput).then(() => {
-                alert("All quotes and notes copied to clipboard!");
-            }).catch(() => {
-                alert("Failed to copy.");
-            });
+        function toggleSpoilerShield(c) { document.body.classList.toggle('shield-active', c.checked); }
+        function toggleTheme(c) {
+            document.body.classList.toggle('light-mode', c.checked);
+            localStorage.setItem('tomekeeper_theme', c.checked ? 'light' : 'dark');
         }
-
-        function exportUserData() {
-            const data = {
-                pins: document.getElementById('pinCanvas').innerHTML,
-                shelves: document.getElementById('shelvesGrid').innerHTML,
-                bookmarks: {
-                    onyx_p: localStorage.getItem('tomekeeper_bookmark_onyx_physical'),
-                    onyx_a: localStorage.getItem('tomekeeper_bookmark_onyx_audio'),
-                    iron_p: localStorage.getItem('tomekeeper_bookmark_iron_physical'),
-                    iron_a: localStorage.getItem('tomekeeper_bookmark_iron_audio'),
-                    fourth_p: localStorage.getItem('tomekeeper_bookmark_fourth_physical'),
-                    fourth_a: localStorage.getItem('tomekeeper_bookmark_fourth_audio')
-                }
-            };
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'tomekeeper_master_backup.json';
-            a.click();
-        }
-
-        function importUserData(event) {
-            const file = event.target.files[0];
-            if(!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = JSON.parse(e.target.result);
-                    if(data.pins) document.getElementById('pinCanvas').innerHTML = data.pins;
-                    if(data.shelves) document.getElementById('shelvesGrid').innerHTML = data.shelves;
-                    if(data.bookmarks) {
-                        for(let key in data.bookmarks) {
-                            if(data.bookmarks[key]) localStorage.setItem('tomekeeper_bookmark_' + key, data.bookmarks[key]);
-                        }
-                        switchFormat(currentFormat);
-                    }
-                    alert("Backup imported successfully!");
-                } catch(err) {
-                    alert("Invalid JSON file.");
-                }
-            };
-            reader.readAsText(file);
+        function saveBookmark() {
+            localStorage.setItem('tomekeeper_bm', document.getElementById('bookmarkInput').value);
         }
 
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/Tome-keeper/sw.js')
-            .then(() => console.log("PWA Service Worker Registered"));
+            navigator.serviceWorker.register('/Tome-keeper/sw.js');
         }
 
         window.onload = function() {
             switchBookProfile('onyx');
-            const savedTheme = localStorage.getItem('tomekeeper_theme');
-            if(savedTheme === 'light') {
+            if(localStorage.getItem('tomekeeper_theme') === 'light') {
                 document.body.classList.add('light-mode');
                 document.getElementById('themeToggle').checked = true;
             }
