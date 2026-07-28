@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tomekeeper | Master Edition v3</title>
+    <title>Tomekeeper | Master Edition v4</title>
     <link rel="manifest" href="/Tome-keeper/manifest.json">
     <style>
         :root {
@@ -246,8 +246,8 @@
         }
 
         .book-mock-cover {
-            width: 80px;
-            height: 120px;
+            width: 85px;
+            height: 130px;
             background: linear-gradient(135deg, var(--surface-hover), var(--border-color));
             border: 1px solid var(--gold-dark);
             border-radius: 4px;
@@ -316,7 +316,6 @@
             background: var(--bg-color);
         }
 
-        /* Real Visual Bookshelf Styles */
         .bookshelf-shelf {
             background: linear-gradient(180deg, rgba(20,20,20,0.9), rgba(10,10,10,0.95));
             border: 1px solid var(--border-color);
@@ -330,9 +329,6 @@
             color: var(--gold-light);
             font-size: 0.95rem;
             margin-bottom: 0.8rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .shelf-books {
@@ -360,7 +356,6 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
 
-        /* Pin Board Section */
         .pin-board-section {
             background-color: var(--surface-color);
             border: 1px solid var(--border-color);
@@ -384,8 +379,6 @@
             color: var(--gold-primary);
             font-size: 1.1rem;
             margin: 0;
-            border: none;
-            padding: 0;
         }
 
         .reaction-toolbar {
@@ -470,33 +463,10 @@
             line-height: 1.3;
         }
 
-        .time-machine-box {
-            background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
         @media (max-width: 768px) {
-            body {
-                flex-direction: column;
-            }
-            sidebar {
-                width: 100%;
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-                padding: 1rem;
-            }
-            main {
-                padding: 1rem;
-                max-height: none;
-            }
+            body { flex-direction: column; }
+            sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border-color); padding: 1rem; }
+            main { padding: 1rem; max-height: none; }
         }
     </style>
 </head>
@@ -505,7 +475,7 @@
     <sidebar>
         <div class="logo-area">
             <h1>Tomekeeper</h1>
-            <p>Master Edition v3</p>
+            <p>Master Edition v4</p>
         </div>
         <ul class="nav-links">
             <li><a href="#" class="active">Dashboard</a></li>
@@ -650,9 +620,24 @@
     <script>
         let currentFormat = 'physical';
         const profiles = {
-            onyx: { curr: { title: "Onyx Storm", author: "by Rebecca Yarros", series: "Series: The Empyrean (Book 3)", statsPhysical: "Pages: ~623 | Chapters: 65", statsAudio: "Duration: 21h 45m", progress: "15%" }, trope: "Enemies-to-Lovers", damage: "9.8 / 10" },
-            iron: { curr: { title: "Iron Flame", author: "by Rebecca Yarros", series: "Series: The Empyrean (Book 2)", statsPhysical: "Pages: 623 | Chapters: 66", statsAudio: "Duration: 23h 10m", progress: "100%" }, trope: "Proximity & Betrayal", damage: "10 / 10" },
-            fourth: { curr: { title: "Fourth Wing", author: "by Rebecca Yarros", series: "Series: The Empyrean (Book 1)", statsPhysical: "Pages: 516 | Chapters: 39", statsAudio: "Duration: 20h 40m", progress: "100%" }, trope: "Shadow Daddy", damage: "8.5 / 10" }
+            onyx: { 
+                curr: { title: "Onyx Storm", author: "by Rebecca Yarros", series: "Series: The Empyrean (Book 3)", statsPhysical: "Pages: ~623 | Chapters: 65", statsAudio: "Duration: 21h 45m", progress: "15%" }, 
+                trope: "Enemies-to-Lovers", 
+                damage: "9.8 / 10",
+                cover: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&fit=crop"
+            },
+            iron: { 
+                curr: { title: "Iron Flame", author: "by Rebecca Yarros", series: "Series: The Empyrean (Book 2)", statsPhysical: "Pages: 623 | Chapters: 66", statsAudio: "Duration: 23h 10m", progress: "100%" }, 
+                trope: "Proximity & Betrayal", 
+                damage: "10 / 10",
+                cover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=300&fit=crop"
+            },
+            fourth: { 
+                curr: { title: "Fourth Wing", author: "by Rebecca Yarros", series: "Series: The Empyrean (Book 1)", statsPhysical: "Pages: 516 | Chapters: 39", statsAudio: "Duration: 20h 40m", progress: "100%" }, 
+                trope: "Shadow Daddy", 
+                damage: "8.5 / 10",
+                cover: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=300&fit=crop"
+            }
         };
 
         function switchFormat(format) {
@@ -671,7 +656,11 @@
             document.getElementById('currAuthor').innerText = p.curr.author;
             document.getElementById('currSeries').innerText = p.curr.series;
             document.getElementById('progressBar').style.width = p.curr.progress;
-            document.getElementById('currCover').innerHTML = `<strong>${p.curr.title}</strong>`;
+            
+            // Set cover with fallback image rendering
+            const coverDiv = document.getElementById('currCover');
+            coverDiv.innerHTML = `<img src="${p.cover}" alt="${p.curr.title}">`;
+
             document.getElementById('statTrope').innerText = p.trope;
             document.getElementById('statDamage').innerText = p.damage;
             switchFormat(currentFormat);
@@ -688,9 +677,15 @@
                     document.getElementById('currTitle').innerText = b.title;
                     document.getElementById('currAuthor').innerText = `by ${b.authors ? b.authors.join(', ') : 'Unknown'}`;
                     document.getElementById('formatStats').innerText = b.pageCount ? `Pages: ${b.pageCount}` : 'Pages: N/A';
-                    if(b.imageLinks) document.getElementById('currCover').innerHTML = `<img src="${b.imageLinks.thumbnail}" alt="Cover">`;
+                    if(b.imageLinks && b.imageLinks.thumbnail) {
+                        document.getElementById('currCover').innerHTML = `<img src="${b.imageLinks.thumbnail}" alt="Cover">`;
+                    }
+                } else {
+                    alert("Book found, but no metadata/cover available via API.");
                 }
-            } catch(e) { alert("Fetch error"); }
+            } catch(e) { 
+                alert("Network error fetching book metadata."); 
+            }
         }
 
         function addReactionPin(text) {
@@ -753,3 +748,4 @@
     </script>
 </body>
 </html>
+
