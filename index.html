@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tomekeeper | Master Edition v6</title>
+    <title>Tomekeeper | Master Edition v7</title>
     <link rel="manifest" href="/Tome-keeper/manifest.json">
     <style>
         :root {
@@ -475,7 +475,7 @@
     <sidebar>
         <div class="logo-area">
             <h1>Tomekeeper</h1>
-            <p>Master Edition v6</p>
+            <p>Master Edition v7</p>
         </div>
         <ul class="nav-links">
             <li><a href="#" class="active">Dashboard</a></li>
@@ -624,19 +624,19 @@
                 curr: { title: "Onyx Storm", author: "by Rebecca Yarros", series: "Series: The Empyrean (Book 3)", statsPhysical: "Pages: ~623 | Chapters: 65", statsAudio: "Duration: 21h 45m", progress: "15%" }, 
                 trope: "Enemies-to-Lovers", 
                 damage: "9.8 / 10",
-                cover: "https://covers.openlibrary.org/b/id/14582195-L.jpg"
+                coverText: "Onyx Storm"
             },
             iron: { 
                 curr: { title: "Iron Flame", author: "by Rebecca Yarros", series: "Series: The Empyrean (Book 2)", statsPhysical: "Pages: 623 | Chapters: 66", statsAudio: "Duration: 23h 10m", progress: "100%" }, 
                 trope: "Proximity & Betrayal", 
                 damage: "10 / 10",
-                cover: "https://covers.openlibrary.org/b/id/14478338-L.jpg"
+                coverText: "Iron Flame"
             },
             fourth: { 
                 curr: { title: "Fourth Wing", author: "by Rebecca Yarros", series: "Series: The Empyrean (Book 1)", statsPhysical: "Pages: 516 | Chapters: 39", statsAudio: "Duration: 20h 40m", progress: "100%" }, 
                 trope: "Shadow Daddy", 
                 damage: "8.5 / 10",
-                cover: "https://covers.openlibrary.org/b/id/13603463-L.jpg"
+                coverText: "Fourth Wing"
             }
         };
 
@@ -658,7 +658,7 @@
             document.getElementById('progressBar').style.width = p.curr.progress;
             
             const coverDiv = document.getElementById('currCover');
-            coverDiv.innerHTML = `<img src="${p.cover}" alt="${p.curr.title}">`;
+            coverDiv.innerHTML = `<strong>${p.coverText}</strong>`;
 
             document.getElementById('statTrope').innerText = p.trope;
             document.getElementById('statDamage').innerText = p.damage;
@@ -676,14 +676,24 @@
                     document.getElementById('currTitle').innerText = b.title;
                     document.getElementById('currAuthor').innerText = `by ${b.authors ? b.authors.join(', ') : 'Unknown'}`;
                     document.getElementById('formatStats').innerText = b.pageCount ? `Pages: ${b.pageCount}` : 'Pages: N/A';
+                    document.getElementById('currSeries').innerText = `Publisher: ${b.publisher || 'Independent'}`;
+                    
                     if(b.imageLinks && b.imageLinks.thumbnail) {
                         document.getElementById('currCover').innerHTML = `<img src="${b.imageLinks.thumbnail}" alt="Cover">`;
+                    } else {
+                        document.getElementById('currCover').innerHTML = `<strong>${b.title}</strong>`;
                     }
                 } else {
-                    alert("Book found, but no metadata/cover available via API.");
+                    // Graceful fallback if API fails or doesn't find exact match
+                    document.getElementById('currTitle').innerText = query;
+                    document.getElementById('currAuthor').innerText = "by Custom Author";
+                    document.getElementById('formatStats').innerText = "Pages: Unknown | Chapters: N/A";
+                    document.getElementById('currCover').innerHTML = `<strong>${query}</strong>`;
                 }
             } catch(e) { 
-                alert("Network error fetching book metadata."); 
+                document.getElementById('currTitle').innerText = query;
+                document.getElementById('currAuthor').innerText = "by Custom Author";
+                document.getElementById('currCover').innerHTML = `<strong>${query}</strong>`;
             }
         }
 
