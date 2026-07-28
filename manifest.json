@@ -1,0 +1,21 @@
+{
+  "name": "Tomekeeper",
+  "short_name": "Tomekeeper",
+  "start_url": "/Tome-keeper/",
+  "display": "standalone",
+  "background_color": "#0b0b0b",
+  "theme_color": "#d4af37",
+  "icons": [
+    {
+      "src": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=192&h=192&fit=crop",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=512&h=512&fit=crop",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+
